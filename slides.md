@@ -5,7 +5,6 @@
 ![Repository Languages](images/01_repository_languages.png)
 
 by Kevin Fischer / @kfischer_okarin
-{:class='fragment'}
 
 ---
 
@@ -36,4 +35,51 @@ by Kevin Fischer / @kfischer_okarin
 
 ```note
 ニューヨークの街を飛び回ったりしています。
+```
+
+---
+
+## Kaigress - Overview
+
+![Network](images/05_kaigress.png)
+
+---
+
+## Kaigress - My Network
+
+![Close-up](images/06_kaigress2.png)
+
+---
+
+## What I will talk about
+
+* Rewriting the (small) frontend of Kaigress from Slim to Opal+Ferro
+* My impression
+
+---
+
+## Opal
+
+https://github.com/opal/opal
+
+![Opal](images/07_opal.png)
+
+---
+
+## Ferro
+
+https://github.com/easydatawarehousing/opal-ferro
+
+```ruby
+class Panel < Ferro::Component::Base
+  def before_create
+    @title = option_replace :title
+    @content = option_replace :content
+  end
+
+  def cascade
+    add_child :header, Header, content: @title if @title
+    add_child :content, Body, content: @content
+  end
+end
 ```
