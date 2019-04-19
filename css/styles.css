@@ -1,0 +1,9 @@
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.reveal .slides section img {
+  border: 0
+}
