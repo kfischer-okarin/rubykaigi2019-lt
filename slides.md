@@ -11,8 +11,7 @@ by Kevin Fischer / @kfischer_okarin
 ## Kevin Fischer
 
 ![Avatar](images/02_avatar.jpg)
-{:class="top-right"}
-{:style="width: 25%"}
+{: class="top-right" style="width: 25%"}
 
 * Born and raised in Germany
 * Christian, believing in and
@@ -58,11 +57,127 @@ by Kevin Fischer / @kfischer_okarin
 
 ---
 
+## Adding gems
+
+```ruby
+# Gemfile
+
+gem 'opal', '~> 0.11.4'
+gem 'opal-rails'
+gem 'opal-ferro', '~> 0.11.0'
+```
+
+---
+
+## Adding gems
+
+```ruby
+# Gemfile
+
+gem 'opal', '~> 0.11.4' <-------------------
+gem 'opal-rails'
+gem 'opal-ferro', '~> 0.11.0'
+```
+
+---
+
 ## Opal
 
 https://github.com/opal/opal
 
 ![Opal](images/07_opal.png)
+
+---
+
+## Adding gems
+
+```ruby
+# Gemfile
+
+gem 'opal', '~> 0.11.4' <-------------------
+gem 'opal-rails'
+gem 'opal-ferro', '~> 0.11.0'
+```
+
+---
+
+## Adding gems
+
+```ruby
+# Gemfile
+
+gem 'opal', '~> 0.11.4'
+gem 'opal-rails' <--------------------------
+gem 'opal-ferro', '~> 0.11.0'
+```
+
+---
+
+## opal-rails - Sprockets
+
+Adds a sprockets extension for js.rb files, so this
+
+```js
+// application.js
+
+//= require rails-ujs
+//= require opal
+//= require turbolinks
+//= require_tree .
+```
+
+---
+
+## opal-rails - Sprockets
+
+can be written like this and is automatically compiled to Javascript.
+
+```ruby
+# application.js.rb
+
+require 'rails-ujs'
+require 'opal'
+require 'turbolinks'
+require_tree '.'
+```
+
+---
+
+## opal-rails - Opal Templates
+
+```ruby
+# app/views/users/_new.js.opal
+
+class NewUserView
+  # Fancy UI Framework stuff
+end
+
+NewUserView.new.render
+```
+
+---
+
+## Adding gems
+
+```ruby
+# Gemfile
+
+gem 'opal', '~> 0.11.4'
+gem 'opal-rails' <--------------------------
+gem 'opal-ferro', '~> 0.11.0'
+```
+
+---
+
+## Adding gems
+
+```ruby
+# Gemfile
+
+gem 'opal', '~> 0.11.4'
+gem 'opal-rails'
+gem 'opal-ferro', '~> 0.11.0' <-------------
+```
 
 ---
 
@@ -83,3 +198,5 @@ class Panel < Ferro::Component::Base
   end
 end
 ```
+
+---
