@@ -181,22 +181,202 @@ gem 'opal-ferro', '~> 0.11.0' <-------------
 
 ---
 
-## Ferro
+## Let's start rewriting
 
-https://github.com/easydatawarehousing/opal-ferro
+---
+
+![Screen](images/08_screenshot.png){: style="width: 50%"}
+
+---
+
+```erb
+  <div class="panel">
+    <div class="panel-header">
+      <h1 class="panel-title"><%= @user.nickname %></h1>
+    </div>
+    <div class="panel-body">
+      <p class="<%= @user.team %>">Team: <%= @user.team %></p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-header">
+      <h1 class="panel-title">Your QR-Code</h1>
+    </div>
+    <div class="panel-body">
+      <%= qr_code_for @user %>
+    </div>
+  </div>
+```
+
+---
+
+```erb
+  <div class="panel">
+    <div class="panel-header">
+      <h1 class="panel-title"><%= @user.nickname %></h1>
+    </div>
+    <div class="panel-body">
+      <p class="<%= @user.team %>">Team: <%= @user.team %></p>
+    </div>
+  </div>
+```
+
+---
+
+```erb
+  <div class="panel">
+    <div class="panel-header">
+      <h1 class="panel-title">TITLE</h1>
+    </div>
+    <div class="panel-body">CONTENT</div>
+  </div>
+```
+
+---
 
 ```ruby
 class Panel < Ferro::Component::Base
-  def before_create
-    @title = option_replace :title
-    @content = option_replace :content
-  end
+end
+```
 
+---
+
+```ruby
+class Panel < Ferro::Component::Base
   def cascade
-    add_child :header, Header, content: @title if @title
-    add_child :content, Body, content: @content
+    add_child :header, Header, title: 'Title'
+    add_child :body, Body, content: 'Content'
   end
 end
 ```
 
 ---
+
+```ruby
+class Body < Ferro::Component::Base
+  # content is automatically added as Text Node
+end
+```
+
+---
+
+```erb
+  <div class="panel">
+    <div class="panel-header">
+      <h1 class="panel-title">TITLE</h1>
+    </div>
+    <div class="panel-body">CONTENT</div>
+  </div>
+```
+
+---
+
+```ruby
+class Header < Ferro::Component::Base
+  def before_create
+    @title = option_replace :title
+  end
+
+  def cascade
+    add_child :title, Title, content: @title
+  end
+end
+```
+
+---
+
+```ruby
+class Title < Ferro::Component::Text
+  def before_create
+    @size = 1  # becomes h1 tag
+    # Do nothing with content, it will become a text node
+  end
+end
+```
+
+---
+
+```ruby
+class Panel < Ferro::Component::Base
+  class Title; ...; end
+  class Header; ...; end
+  class Body; ...; end
+
+  def cascade
+    add_child :header, Header, title: 'title'
+    add_child :body, Body, content: 'content'
+  end
+end
+```
+
+---
+
+## What about CSS?
+
+---
+
+```css
+.panel { /* Will be applied to Ruby class Panel */
+  /* ... */
+}
+
+.panel-body { /* Will be applied to Ruby class Panel::Body */
+  /* ... */
+}
+```
+
+---
+
+## My impression about writing an app with Ferro
+
+---
+
+## Pro
+### It was nice using more Ruby
+
+
+![Before](images/09_before.png)
+:arrow_down:
+![After](images/01_repository_languages.png)
+
+---
+
+## Con
+### Using opal-rails efficiently was not so easy
+
+---
+
+## Pro
+### In the end, the single used action view became quite elegant
+
+```erb
+<%=
+  javascript_include_tag
+    "app/pages/#{controller.controller_name}/#{controller.action_name}"
+%>
+
+<script>
+  <%= render partial: controller.action_name, formats: :js %>
+</script>
+```
+
+---
+
+## Con
+### Not too well documented, had to browse the source code quite a bit
+
+---
+
+## It want to try...
+
+![Ovto](images/10_ovto.png){: style="width: 50%"}
+
+---
+
+## Thank you for listening
+
+![Spiderman Selfie](images/11_spiderman2.jpg)
+
+---
+
+### PS: We're hiring
