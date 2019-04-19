@@ -1,0 +1,6 @@
+title: Go for it! 100% Ruby
+author: Kevin Fischer
+theme: moon
+revealjs_config:
+  history: true
+  fragmentInURL: true
