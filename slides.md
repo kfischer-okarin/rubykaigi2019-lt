@@ -375,7 +375,10 @@ end
 
 ## Thank you for listening
 
-![Spiderman Selfie](images/11_spiderman2.jpg)
+Twitter: @kfischer_okarin
+Github: kfischer-okarin
+
+![Spiderman Selfie](images/11_spiderman2.jpg){: style="width: 70%"}
 
 ---
 
